@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <tabs>
+        <flockler translate="label" module="flockler_flockler">
+            <label>Flockler</label>
+            <sort_order>99999</sort_order>
+        </flockler>
+    </tabs>
+    <sections>
+        <flockler_settings translate="label" module="flockler_flockler">
+            <label>Flockler Settings</label>
+            <tab>flockler</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>1000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <blog translate="label">
+                    <label>Blog Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <section_id>
+                            <label>Blog Section ID (empty for all content)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </section_id>
+                    </fields>
+                </blog>
+            </groups>
+        </flockler_settings>
+    </sections>
+</config>

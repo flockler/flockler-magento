@@ -1,0 +1,24 @@
+<?php
+    $url = '';
+    $text = $item['title'];
+    if ($item['type'] == 'facebook') {
+        $url = 'https://www.facebook.com/'  . $item['attachments']['facebook_post']['post_id_str'];
+    } elseif ($item['type'] == 'instagram') {
+        $url = $item['attachments']['instagram_item']['link'];
+    } elseif ($item['type'] == 'video') {
+        $url = !empty($item['attachments']['video']['original_url']) ? $item['attachments']['video']['original_url'] : $item['local_permalink'];
+    } else {
+        $url = $item['local_permalink'];
+    }
+    $twittershare = 'https://twitter.com/intent/tweet?url=' . urlencode($url) . '&text=' . $text;
+    $fbshare = 'https://www.facebook.com/sharer/sharer.php?u=' . urlencode($url) . '&t=' . $text;
+?>
+
+<a href="<?php echo $twittershare ?>" title="Share on Twitter" class="flockler-wall-item__share-action flockler-wall-item__share-action--twitter" target="_blank">
+    <i class="flockler-icon-twitter"></i>
+    <span>Share on Twitter</span>
+</a>
+<a href="<?php echo $fbshare ?>" title="Share on Facebook" class="flockler-wall-item__share-action flockler-wall-item__share-action--facebook" target="_blank">
+    <i class="flockler-icon-facebook"></i>
+    <span>Share on Facebook</span>
+</a>

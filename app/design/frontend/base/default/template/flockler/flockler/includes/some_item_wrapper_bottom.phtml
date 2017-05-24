@@ -1,0 +1,6 @@
+<?php if (trim(strip_tags($item['body']))) : ?>
+  </div>
+  <div class="flockler-wall-item__body" style="padding-top: 0; padding-bottom: 18px;">
+      <?php echo $this->get_parser($item['body'])->done() ?>
+  </div>
+<?php endif;

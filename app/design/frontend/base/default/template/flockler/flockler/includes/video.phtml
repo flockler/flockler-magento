@@ -1,0 +1,30 @@
+<div class="flockler-wall-item flockler-wall-item--video" <?php echo $itemWidth ?>>
+    <div class="flockler-wall-item__content">
+        <div class="flockler-wall-item__video flockler-wall-item__video-<?php echo $item['attachments']['video']['service'] ?>">
+            <img src="<?php echo $this->get_parser(str_replace('hqdefault', 'mqdefault', $item['cover_url']))->useThumbnail()->done() ?>" class="flockler-wall-item__video__img"  />
+            <a href="<?php echo $item['local_permalink'] ?>">
+                <button class="flockler-wall-item__media__video-icon embed">
+                    <div class="flockler-wall-item__media__video-icon__arrow"></div>
+                </button>
+            </a>
+        </div>
+        <div class="flockler-wall-item__title flockler-wall-item__padding">
+            <a href="<?php echo $item['local_permalink'] ?>" class="flockler-wall-item__title-link"><?php echo $item['title'] ?></a>
+        </div>
+        <div class="flockler-wall-item__body">
+            <?php if($item['body'] && $item['body'] != "") {
+                if (array_search($item['attachments']['video']['service'], array('youtube')) === -1) {
+                    echo $this->get_parser($item['body'], $item['summary'])->parseNewLines()->parseURL()->makeSummary($item['local_permalink'])->done();
+                } else {
+                    echo $this->get_parser($item['body'], $item['summary'])->parseNewLines()->makeSummary($item['local_permalink'])->done();
+                }
+
+            } ?>
+        </div>
+        <div class="flockler-wall-item__footer">
+            <div class="flockler-wall-item__share">
+                <?php require(FLOCKLER_WALL_TEMPLATES.'/share_actions.phtml'); ?>
+            </div>
+        </div>
+    </div>
+</div>

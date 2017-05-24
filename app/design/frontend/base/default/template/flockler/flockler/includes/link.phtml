@@ -1,0 +1,27 @@
+<div class="flockler-wall-item flockler-wall-item--link" <?php echo $itemWidth ?>>
+    <div class="flockler-wall-item__content">
+        <?php if($item['body'] && $item['body'] != "") : ?>
+            <div class="flockler-wall-item__body">
+                <?php echo $this->get_parser($item['body'], $item['summary'])->parseURL()->makeSummary($item['source_url'], true)->done(); ?>
+            </div>
+        <?php endif; ?>
+
+        <?php
+          $_link_preview = array(
+            'url' => $item['attachments']['link']['original_url'],
+            'cover_url' => $item['attachments']['link']['cover_url'],
+            'title' => $item['attachments']['link']['title'],
+            'description' => $item['attachments']['link']['description']
+          );
+        ?>
+        <?php require(FLOCKLER_WALL_TEMPLATES.'/link_preview.phtml'); ?>
+
+        <div class="flockler-wall-item__footer">
+            <div class="flockler-wall-item__share">
+                <div class="flockler-wall-item__share-actions">
+                    <?php require(FLOCKLER_WALL_TEMPLATES.'/share_actions.phtml'); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

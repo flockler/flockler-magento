@@ -1,0 +1,54 @@
+<div class="flockler-wall-item flockler-wall-item--facebook" <?php echo $itemWidth ?>>
+    <div class="flockler-wall-item__content">
+        <?php require(FLOCKLER_WALL_TEMPLATES.'/some_item_wrapper_top.phtml'); ?>
+
+        <?php if($item['attachments']['facebook_post']['picture'] && $item['attachments']['facebook_post']['post_type'] == 'photo') { ?>
+            <div class="flockler-wall-item__media">
+                <img src="<?php echo $item['attachments']['facebook_post']['picture'] ?>" alt="Facebook photo by <?php echo $item['attachments']['facebook_post']['from_name'] ?>" class="flockler-wall-item__media__img">
+            </div>
+        <?php } ?>
+
+        <?php if($item['attachments']['facebook_post']['picture'] && $item['attachments']['facebook_post']['post_type'] == 'video') { ?>
+            <div class="flockler-wall-item__video">
+                <img class="facebook-video flockler-wall-item__video__img" src="<?php echo $item['attachments']['facebook_post']['picture'] ?>" alt="">
+                <a href="<?php echo $item['local_permalink'] ?>">
+                    <button class="flockler-wall-item__media__video-icon embed">
+                        <div class="flockler-wall-item__media__video-icon__arrow"></div>
+                    </button>
+                </a>
+            </div>
+        <?php } ?>
+
+        <div class="flockler-wall-item__body">
+            <?php if($item['attachments']['facebook_post']['message'] && $item['attachments']['facebook_post']['message'] != "") { ?>
+                <?php echo $this->get_parser($item['attachments']['facebook_post']['message'])->parseNewLines()->parseFBHashtag()->parseURL()->done() ?>
+            <?php } ?>
+        </div>
+
+        <?php if($item['attachments']['facebook_post']['post_type'] == 'link' ) { ?>
+          <?php
+            $_link_preview = array(
+              'url' => $item['attachments']['facebook_post']['link'],
+              'cover_url' => $item['attachments']['facebook_post']['picture'],
+              'title' => $item['attachments']['facebook_post']['link_name'],
+              'description' => $item['attachments']['facebook_post']['link_description'],
+              'meta' => $item['attachments']['facebook_post']['link_caption']
+            );
+          ?>
+          <?php require(FLOCKLER_WALL_TEMPLATES.'/link_preview.phtml'); ?>
+        <?php } ?>
+
+        <div class="flockler-wall-item__footer">
+            <div class="flockler-wall-item__profile">
+                <div class="flockler-wall-item__profile__avatar">
+                    <img src="http://graph.facebook.com/<?php echo $item['attachments']['facebook_post']['from_id_str'] ?>/picture?type=square" alt="" class="flockler-wall-item__profile__avatar-img">
+                </div>
+                <div class="flockler-wall-item__profile__body">
+                    <a href="http://facebook.com/profile.php?id=<?php echo $item['attachments']['facebook_post']['from_id_str'] ?>" class="flockler-wall-item__profile__name" target="_blank"><?php echo $item['attachments']['facebook_post']['from_name'] ?></a>
+                    <a href="https://www.facebook.com/<?php echo $item['attachments']['facebook_post']['post_id_str'] ?>" class="flockler-wall-item__profile__detail" target="_blank">Facebook</a>
+                </div>
+            </div>
+        </div>
+        <?php require(FLOCKLER_WALL_TEMPLATES.'/some_item_wrapper_bottom.phtml'); ?>
+    </div>
+</div>

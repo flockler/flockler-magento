@@ -1,0 +1,31 @@
+<div class="flockler-wall-item flockler-wall-item--link" <?php echo $itemWidth ?>>
+    <div class="flockler-wall-item__content">
+        <?php if($item['cover_url']) : ?>
+            <div class="flockler-wall-item__media">
+                <a target="_blank" href="<?php echo $item['source_url'] ?>">
+                  <img src="<?php echo $this->get_parser($item['cover_url'])->useThumbnail()->done() ?>" class="flockler-wall-item__media__img" alt="" />
+                </a>
+            </div>
+        <?php endif; ?>
+
+        <div class="flockler-wall-item__title flockler-wall-item__padding">
+            <a href="<?php echo $item['source_url'] ?>" target="_blank" class="flockler-wall-item__title-link"><?php echo $item['title'] ?></a>
+        </div>
+
+        <?php if($item['body'] && $item['body'] != "") : ?>
+            <div class="flockler-wall-item__body">
+                <?php echo $item['body']; ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if ($item['local_permalink']) { ?>
+            <div class="flockler-wall-item__footer">
+                <div class="flockler-wall-item__share">
+                    <div class="flockler-wall-item__share_actions">
+                        <?php require(FLOCKLER_WALL_TEMPLATES.'/share_actions.phtml'); ?>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
+</div>

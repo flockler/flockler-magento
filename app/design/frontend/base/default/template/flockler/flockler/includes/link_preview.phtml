@@ -1,0 +1,16 @@
+<a href="<?php echo $_link_preview['url'] ?>" class="flockler-wall-item__link-preview" target="_blank">
+    <?php if (!empty($_link_preview['cover_url'])) : ?>
+        <div class="flockler-wall-item__link-preview__cover">
+            <img class="flockler-wall-item__link-preview__picture" src="<?php echo $_link_preview['cover_url'] ?>" alt="" />
+        </div>
+    <?php endif; ?>
+    <div class="flockler-wall-item__link-preview__body">
+        <div class="flockler-wall-item__link-preview__title"><?php echo $_link_preview['title'] ?></div>
+        <?php if (!empty($_link_preview['description'])) : ?>
+          <div class="flockler-wall-item__link-preview__description"><?php echo $_link_preview['description'] ?></div>
+        <?php endif; ?>
+        <?php if (!empty($_link_preview['meta'])) : ?>
+          <div class="flockler-wall-item__link-preview__meta"><?php echo $_link_preview['meta'] ?></div>
+        <?php endif; ?>
+    </div>
+</a>

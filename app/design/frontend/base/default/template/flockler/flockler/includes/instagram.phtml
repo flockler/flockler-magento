@@ -1,0 +1,41 @@
+<div class="flockler-wall-item flockler-wall-item--instagram" <?php echo $itemWidth; ?>>
+    <div class="flockler-wall-item__content">
+      <?php require(FLOCKLER_WALL_TEMPLATES.'/some_item_wrapper_top.phtml'); ?>
+      <?php if (!$item['attachments']['instagram_item']['video_standard_resolution']) { ?>
+          <div class="flockler-wall-item__media">
+              <a target="_blank" href="<?php echo $item['attachments']['instagram_item']['link'] ?>">
+                  <img src="<?php echo $item['attachments']['instagram_item']['link'] ?>media"
+                       alt="<?php echo 'Instagram photo by' . $item['attachments']['instagram_item']['username'] ?>"
+                       class="flockler-wall-item__media__img"/>
+              </a>
+          </div>
+      <?php } ?>
+      <?php if ($item['attachments']['instagram_item']['video_standard_resolution']) { ?>
+          <div class="flockler-wall-item__video">
+              <img class="instagram-video flockler-wall-item__video__img" src="<?php echo $item['cover_url'] ?>" />
+              <button class="flockler-wall-item__media__video-icon html5-embed" data-videosrc="<?php echo $item['attachments']['instagram_item']['video_standard_resolution'] ?>">
+                  <div class="flockler-wall-item__media__video-icon__arrow"></div>
+              </button>
+          </div>
+      <?php } ?>
+      <div class="flockler-wall-item__body">
+          <?php echo $this->get_parser($item['attachments']['instagram_item']['caption'])->parseIUsername()->parseIHashtag()->done() ?>
+      </div>
+
+      <div class="flockler-wall-item__footer">
+          <div class="flockler-wall-item__profile">
+              <div class="flockler-wall-item__profile__avatar">
+                  <img src="<?php echo $item['attachments']['instagram_item']['profile_picture'] ?>" alt="" class="flockler-wall-item__profile__avatar-img">
+              </div>
+              <div class="flockler-wall-item__profile__body">
+                  <a href="http://instagram.com/<?php echo $item['attachments']['instagram_item']['username'] ?>" class="flockler-wall-item__profile__name"  target="_blank"><?php echo $item['attachments']['instagram_item']['username'] ?></a>
+                  <a href="<?php echo $item['attachments']['instagram_item']['link'] ?>" class="flockler-wall-item__profile__detail" target="_blank">Instagram</a>
+              </div>
+          </div>
+          <div class="flockler-wall-item__share">
+              <?php require(FLOCKLER_WALL_TEMPLATES.'/share_actions.phtml'); ?>
+          </div>
+      </div>
+      <?php require(FLOCKLER_WALL_TEMPLATES .'/some_item_wrapper_bottom.phtml'); ?>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Flockler_Flockler>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Flockler_Flockler>
+        <Flockler_Posts>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Flockler_Posts>
+    </modules>
+</config>

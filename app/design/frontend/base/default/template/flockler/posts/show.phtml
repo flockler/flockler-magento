@@ -1,0 +1,40 @@
+<div class="flockler-article__back">
+    <a href="<?php echo Mage::getUrl('blog') ?>">Blog</a>
+</div>
+
+<div class="flockler-article">
+
+<?php if ($post['type'] == 'link') : ?>
+
+    <?php echo Mage::getModel('flockler/post')->convertPostToHTML($post, "100%"); ?>
+
+<?php else : ?>
+
+    <h1 class="flockler-article__title"><?php echo $post['title']; ?></h1>
+
+    <div class="flockler-article__body">
+        <?php if ($post['attachments']['tweet'] && $post['attachments']['tweet']['oembed']) : ?>
+            <div class="flockler-article__attachment flockler-article__attachment--tweet">
+                <?php echo $post['attachments']['tweet']['oembed'] ?>
+            </div>
+        <?php elseif ($post['attachments']['instagram_item']) : ?>
+            <div class="flockler-article__attachment flockler-article__attachment--instagram">
+                <?php require('attachments/instagram.phtml'); ?>
+            </div>
+            <script async defer src="//platform.instagram.com/en_US/embeds.js"></script>
+        <?php elseif ($post['attachments']['video']) : ?>
+            <div class="flockler-article__attachment flockler-article__attachment--video">
+                <iframe src="<?php echo $post['attachments']['video']['embed_src'] ?>" class="flockler-article__attachment__iframe flockler-article__attachment__iframe--video" frameborder="0" allowfullscreen></iframe>
+            </div>
+        <?php elseif ($post['attachments']['facebook_post']) : ?>
+            <div class="flockler-article__attachment flockler-article__attachment--facebook">
+                <?php require('attachments/facebook_post.phtml'); ?>
+            </div>
+        <?php endif; ?>
+
+        <?php echo $post['body'] ?>
+    </div>
+
+<?php endif; ?>
+
+</div>

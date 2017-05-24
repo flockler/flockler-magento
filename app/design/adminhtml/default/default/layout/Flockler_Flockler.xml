@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+
+    <flockler_default>
+        <reference name="menu">
+            <action method="setActive"><menupath>flockler</menupath></action>
+        </reference>
+    </flockler_default>
+
+    <flockler_posts_default>
+        <update handle="flockler_default"/>
+        <reference name="head">
+            <action method="setTitle"><title>Flockler Posts</title></action>
+        </reference>
+    </flockler_posts_default>
+
+    <flockler_webhooks_default>
+        <update handle="flockler_default"/>
+        <reference name="head">
+            <action method="setTitle"><title>Flockler Webhooks</title></action>
+        </reference>
+    </flockler_webhooks_default>
+
+    <adminhtml_flockler_posts_index>
+        <update handle="flockler_posts_default"/>
+
+        <reference name="content">
+            <block type="flockler_flockler/adminhtml_flockler_posts" name="flockler_posts"/>
+        </reference>
+    </adminhtml_flockler_posts_index>
+
+    <adminhtml_flockler_posts_grid>
+        <block type="flockler_flockler/adminhtml_flockler_posts_grid" name="root"/>
+    </adminhtml_flockler_posts_grid>
+
+    <adminhtml_flockler_webhooks_index>
+        <update handle="flockler_webhooks_default"/>
+        <reference name="content">
+            <block type="flockler_flockler/adminhtml_flockler_webhooks" name="flockler_webhooks"/>
+        </reference>
+    </adminhtml_flockler_webhooks_index>
+
+    <adminhtml_flockler_webhooks_grid>
+        <block type="flockler_flockler/adminhtml_flockler_webhooks_grid" name="root"/>
+    </adminhtml_flockler_webhooks_grid>
+
+    <adminhtml_flockler_webhooks_new>
+        <update handle="adminhtml_flockler_webhooks_edit" />
+    </adminhtml_flockler_webhooks_new>
+
+    <adminhtml_flockler_webhooks_edit>
+        <update handle="editor"/>
+        <reference name="content">
+            <block type="flockler_flockler/adminhtml_flockler_webhooks_edit" name="flockler_webhooks_edit" />
+        </reference>
+    </adminhtml_flockler_webhooks_edit>
+
+</layout>

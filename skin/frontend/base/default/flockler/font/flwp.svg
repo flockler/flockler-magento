@@ -1,0 +1,16 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2015 by original authors @ fontello.com</metadata>
+<defs>
+<font id="flwp" horiz-adv-x="1000" >
+<font-face font-family="flwp" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="reply" unicode="&#xe800;" d="m1000 225q0-93-71-252-2-4-6-13t-7-17-8-12q-6-10-15-10-9 0-13 6t-5 14q0 5 1 15t2 13q3 38 3 69 0 56-10 101t-27 77-45 56-59 39-74 24-86 12-98 3h-125v-143q0-14-10-25t-26-11-25 11l-285 286q-11 10-11 25t11 25l285 286q11 10 25 10t26-10 10-25v-143h125q398 0 488-225 30-75 30-186z" horiz-adv-x="1000" />
+<glyph glyph-name="retweet" unicode="&#xe801;" d="m714 11q0-8-5-13t-13-5h-535q-5 0-8 1t-5 4-3 4-2 7 0 6v335h-107q-15 0-25 11t-11 25q0 13 8 23l179 214q11 12 27 12t28-12l178-214q9-10 9-23 0-15-11-25t-25-11h-107v-214h321q9 0 14-6l89-108q4-6 4-11z m357 232q0-14-8-23l-179-214q-11-13-27-13t-27 13l-179 214q-8 9-8 23 0 14 10 25t26 11h107v214h-322q-9 0-14 7l-89 107q-4 5-4 11 0 7 5 12t13 6h536q4 0 7-1t5-4 3-5 2-6 1-7v-334h107q14 0 25-11t10-25z" horiz-adv-x="1071.4" />
+<glyph glyph-name="twitter" unicode="&#xe803;" d="m904 622q-37-54-90-93 0-8 0-23 0-73-21-145t-64-139-103-117-144-82-181-30q-151 0-276 81 19-3 43-3 126 0 224 77-59 2-105 36t-64 89q19-2 34-2 24 0 48 6-63 13-104 62t-41 115v2q38-21 82-23-37 25-59 64t-22 86q0 49 25 91 68-83 164-133t208-55q-5 21-5 41 0 75 53 127t127 53q79 0 132-57 61 12 114 44-20-64-79-100 52 6 104 28z" horiz-adv-x="928.6" />
+<glyph glyph-name="facebook" unicode="&#xe804;" d="m535 843v-147h-87q-48 0-65-20t-17-60v-106h164l-22-165h-142v-424h-171v424h-142v165h142v122q0 104 58 161t155 57q82 0 127-7z" horiz-adv-x="571.4" />
+<glyph glyph-name="heart" unicode="&#xe805;" d="m500-79q-14 0-25 10l-348 336q-5 5-15 15t-31 36-38 55-30 67-13 77q0 123 71 192t196 70q34 0 70-12t67-33 54-38 42-38q20 20 42 38t54 38 67 33 70 12q125 0 196-70t71-192q0-123-128-251l-347-335q-10-10-25-10z" horiz-adv-x="1000" />
+</font>
+</defs>
+</svg>

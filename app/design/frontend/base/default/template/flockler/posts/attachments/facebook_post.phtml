@@ -1,0 +1,71 @@
+<?php $facebook_post = $post['attachments']['facebook_post']; ?>
+
+<div class="flockler-article__fb-attachment">
+  <div class="flockler-article__fb-attachment__profile">
+    <figure class="flockler-article__fb-attachment__profile__picture">
+      <a href="https://facebook.com/<?php echo $facebook_post['from_id_str'] ?>" target="_blank">
+        <img src="https://graph.facebook.com/<?php echo $facebook_post['from_id_str'] ?>/picture?type=square" alt="" title="" class="flockler-article__fb-attachment__profile__picture__img">
+      </a>
+    </figure>
+    <div class="flockler-article__fb-attachment__profile__body">
+      <a href="https://facebook.com/<?php echo $facebook_post['from_id_str'] ?>" target="_blank" class="flockler-article__fb-attachment__profile__name"><?php echo $facebook_post['from_name'] ?></a>
+      <span class="flockler-article__fb-attachment__profile__context">
+        <?php if (!empty($facebook_post['commenting_post_id_str'])) : ?>
+          <a href="https://facebook.com/<?php echo $facebook_post['commenting_post_id_str'] ?>?comment_id=<?php echo end(explode('_', $facebook_post['post_id_str'])) ?>" target="_blank">
+        <?php else : ?>
+          <a href="https://facebook.com/<?php echo $facebook_post['post_id_str'] ?>" target="_blank">
+        <?php endif; ?>
+          <span class="flockler-article__fb-attachment__profile__date">
+            <?php $date = new DateTime($facebook_post['created_time']); ?>
+            <?php echo $date->format('Y-m-d H:i:s') ?>
+          </span>
+        </a>
+      </span>
+    </div>
+  </div>
+  <div class="flockler-article__fb-attachment__body">
+    <p class="flockler-article__fb-attachment__message">
+      <?php echo nl2br($facebook_post['message']) ?>
+    </p>
+  </div>
+  <div class="flockler-article__fb-attachment__attachment">
+    <?php if ($facebook_post['post_type'] == 'photo') : ?>
+      <figure class="flockler-article__fb-attachment__attachment__photo">
+        <img src="<?php echo $facebook_post['picture'] ?>" class="flockler-article__fb-attachment__photo__img" alt="" />
+      </figure>
+    <?php elseif ($facebook_post['post_type'] == 'link') : ?>
+      <a href="http://facebook.com/<?php echo $facebook_post['post_id_str'] ?>" class="flockler-article__fb-attachment__link" target="_blank">
+        <?php if (!empty($facebook_post['picture'])) : ?>
+          <figure class="flockler-article__fb-attachment__link__cover" style="background-image: url(<?php echo $facebook_post['picture'] ?>);">
+            <img src="<?php echo $facebook_post['picture'] ?>" alt="" />
+          </figure>
+        <?php endif; ?>
+        <div class="flockler-article__fb-attachment__link__body">
+          <span class="flockler-article__fb-attachment__link__title">
+            <?php echo $facebook_post['link_name'] ?>
+          </span>
+          <p class="flockler-article__fb-attachment__link__description">
+            <?php echo nl2br($facebook_post['link_description']) ?>
+          </p>
+          <span class="flockler-article__fb-attachment__link__domain">
+            <?php echo $facebook_post['link_caption'] ?>
+          </span>
+        </div>
+      </a>
+      <?php elseif($facebook_post['picture'] && $facebook_post['post_type'] == 'video') : ?>
+        <?php $videoSource = $facebook_post['link']; ?>
+        <?php if (strpos($videoSource, 'facebook.com') !== false) { ?>
+            <iframe src="https://www.facebook.com/plugins/video.php?href=<?php echo $videoSource ?>&width=500&show_text=false&appId=987065284670446&height=281" width="500" height="281" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+        <?php } else { ?>
+            <div class="flockler-wall-item__video">
+                <img class="facebook-video flockler-wall-item__video__img" src="<?php echo $facebook_post['picture'] ?>" alt="">
+                <a href="<?php echo $videoSource ?>">
+                    <button class="flockler-wall-item__media__video-icon embed" data-videosrc="<?php echo $videoSource ?>">
+                        <div class="flockler-wall-item__media__video-icon__arrow"></div>
+                    </button>
+                </a>
+            </div>
+        <?php } ?>
+    <?php endif; ?>
+  </div>
+</div>

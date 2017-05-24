@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+    <modules>
+        <Flockler_Flockler>
+            <version>1.0.0</version>
+        </Flockler_Flockler>
+    </modules>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Flockler_Flockler after="Mage_Adminhtml">Flockler_Flockler_Adminhtml</Flockler_Flockler>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <flockler_flockler>
+                    <file>Flockler_Flockler.xml</file>
+                </flockler_flockler>
+            </updates>
+        </layout>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <flockler_settings>
+                                            <title>Flockler Extension - All</title>
+                                        </flockler_settings>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+
+    <frontend>
+        <routers>
+            <flockler>
+                <use>standard</use>
+                <args>
+                    <module>Flockler_Flockler</module>
+                    <frontName>flockler</frontName>
+                </args>
+            </flockler>
+        </routers>
+    </frontend>
+
+    <global>
+
+        <blocks>
+            <flockler_flockler>
+                <class>Flockler_Flockler_Block</class>
+            </flockler_flockler>
+        </blocks>
+
+        <models>
+            <flockler>
+                <class>Flockler_Flockler_Model</class>
+                <resourceModel>flockler_resource</resourceModel>
+            </flockler>
+            <flockler_resource>
+                <class>Flockler_Flockler_Model_Resource</class>
+                <entities>
+                    <post>
+                        <table>flockler_posts</table>
+                    </post>
+                    <webhook>
+                        <table>flockler_webhooks</table>
+                    </webhook>
+                </entities>
+            </flockler_resource>
+        </models>
+
+        <!-- These lines are required for running install & upgrade scripts -->
+        <resources>
+            <flockler_flockler_setup>
+                <setup>
+                    <module>Flockler_Flockler</module>
+                    <class>Flockler_Flockler_Model_Resource_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </flockler_flockler_setup>
+        </resources>
+
+        <helpers>
+            <flockler_flockler>
+                <class>Flockler_Flockler_Helper</class>
+            </flockler_flockler>
+            <translations>
+                <class>Flockler_Flockler_Helper</class>
+            </translations>
+        </helpers>
+
+    </global>
+
+</config>

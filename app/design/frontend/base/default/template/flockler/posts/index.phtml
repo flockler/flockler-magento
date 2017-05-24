@@ -1,0 +1,182 @@
+<div class="flockler-blog">
+  <h2 class="flockler-blog__heading">Blog</h2>
+
+  <?php foreach ($this->posts() as $post) : ?>
+    <div class="flockler-blog__article <?php echo 'flockler-blog__article--'.$post['type']; ?>">
+
+      <?php if ($post['type'] === 'instagram') : ?>
+
+        <div class="flockler-box flockler-box--round">
+          <div class="flockler-box__header">
+            <div class="flockler-profile">
+              <div class="flockler-profile__picture">
+                <a href="https://instagram.com/<?php echo $post['attachments']['instagram_item']['username'] ?>" target="_blank">
+                  <img src="<?php echo $post['attachments']['instagram_item']['profile_picture'] ?>" alt="" />
+                </a>
+              </div>
+              <div class="flockler-profile__body">
+                <a href="https://instagram.com/<?php echo $post['attachments']['instagram_item']['username'] ?>" target="_blank">
+                  <?php if (isset($post['attachments']['instagram_item']['user_full_name']) && $post['attachments']['instagram_item']['user_full_name'] != $post['attachments']['instagram_item']['username']) : ?>
+                    <strong><?php echo $post['attachments']['instagram_item']['user_full_name'] ?></strong><br/>
+                    <span>@<?php echo $post['attachments']['instagram_item']['username'] ?></span>
+                  <?php else : ?>
+                    <strong>@<?php echo $post['attachments']['instagram_item']['username'] ?></strong>
+                  <?php endif; ?>
+                </a>
+              </div>
+            </div>
+            <div class="flockler-box__header__icon">
+              <i class="flockler-icon-instagram"></i>
+            </div>
+          </div>
+          <div class="flockler-box__body">
+            <a href="<?php echo $this->localPermalink($post); ?>">
+              <img src="<?php echo $post['cover_url'] ?>" alt="" />
+              <?php if ($post['attachments']['instagram_item']['media_type'] === 'video') : ?>
+                <i class="flockler-icon-play"></i>
+              <?php endif; ?>
+            </a>
+            <p>
+              <?php echo $this->linkifyInstagram($post['attachments']['instagram_item']['caption']); ?>
+            </p>
+          </div>
+        </div>
+
+      <?php elseif ($post['type'] === 'facebook_post') : ?>
+        <?php $facebook_post = $post['attachments']['facebook_post']; ?>
+
+        <div class="flockler-box flockler-box--round">
+          <div class="flockler-box__header">
+            <div class="flockler-profile">
+              <div class="flockler-profile__picture">
+                <a href="https://facebook.com/<?php echo $facebook_post['from_id_str'] ?>" target="_blank">
+                  <img src="https://graph.facebook.com/<?php echo $facebook_post['from_id_str'] ?>/picture?type=square" alt="">
+                </a>
+              </div>
+              <div class="flockler-profile__body">
+                <a href="https://facebook.com/<?php echo $facebook_post['from_id_str'] ?>" target="_blank">
+                  <strong><?php echo $facebook_post['from_name'] ?></strong>
+                </a>
+              </div>
+            </div>
+            <div class="flockler-box__header__icon">
+              <i class="flockler-icon-facebook"></i>
+            </div>
+          </div>
+          <div class="flockler-box__body">
+            <?php if (!empty($facebook_post['message'])) : ?>
+              <p>
+                <?php echo $this->linkifyFacebook(nl2br($facebook_post['message'])); ?>
+              </p>
+            <?php endif; ?>
+
+            <?php if ($facebook_post['post_type'] == 'link' || $facebook_post['post_type'] == 'photo' || $facebook_post['post_type'] == 'video') : ?>
+              <div class="flockler-fb-attachment">
+                <?php if ($facebook_post['post_type'] == 'photo') : ?>
+                  <figure class="flockler-fb-attachment__photo">
+                    <img src="<?php echo $facebook_post['picture'] ?>" class="flockler-article__fb-attachment__photo__img" alt="" />
+                  </figure>
+                <?php elseif ($facebook_post['post_type'] == 'link') : ?>
+                  <a href="http://facebook.com/<?php echo $facebook_post['post_id_str'] ?>" class="flockler-fb-attachment__link" target="_blank">
+                    <?php if (!empty($facebook_post['picture'])) : ?>
+                      <figure class="flockler-fb-attachment__link__cover" style="background-image: url(<?php echo $facebook_post['picture'] ?>);">
+                        <img src="<?php echo $facebook_post['picture'] ?>" alt="" />
+                      </figure>
+                    <?php endif; ?>
+                    <div class="flockler-fb-attachment__link__body">
+                      <p class="flockler-fb-attachment__link__title">
+                        <?php echo $facebook_post['link_name'] ?>
+                      </p>
+                      <p class="flockler-fb-attachment__link__description">
+                        <?php echo nl2br($facebook_post['link_description']) ?>
+                      </p>
+                      <span class="flockler-fb-attachment__link__domain">
+                        <?php echo $facebook_post['link_caption'] ?>
+                      </span>
+                    </div>
+                  </a>
+                <?php elseif($facebook_post['picture'] && $facebook_post['post_type'] == 'video') : ?>
+                  <?php if (strpos($facebook_post['link'], 'facebook.com') !== false) : ?>
+                    <div class="flockler-fb-attachment__video-embed">
+                      <iframe src="https://www.facebook.com/plugins/video.php?href=<?php echo $facebook_post['link'] ?>&show_text=false&appId=987065284670446" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+                    </div>
+                  <?php else : ?>
+                    <div class="flockler-fb-attachment__video">
+                      <img class="facebook-video flockler-wall-item__video__img" src="<?php echo $facebook_post['picture'] ?>" alt="">
+                      <a href="<?php echo $videoSource ?>">
+                        <button class="flockler-fb-attachment__video__button" data-videosrc="<?php echo $videoSource ?>">
+                          <i class="flockler-icon-play"></i>
+                        </button>
+                      </a>
+                    </div>
+                  <?php endif; ?>
+                <?php endif; ?>
+              </div>
+            <?php endif; ?>
+          </div>
+        </div>
+
+      <?php elseif ($post['type'] === 'tweet') : ?>
+
+        <div class="flockler-box flockler-box--round">
+          <div class="flockler-box__header">
+            <div class="flockler-profile">
+              <div class="flockler-profile__picture">
+                <a href="https://twitter.com/<?php echo $post['attachments']['tweet']['screen_name'] ?>" target="_blank">
+                  <img src="<?php echo $post['attachments']['tweet']['profile_image_url'] ?>" alt="" />
+                </a>
+              </div>
+              <div class="flockler-profile__body">
+                <a href="https://twitter.com/<?php echo $post['attachments']['tweet']['screen_name'] ?>" target="_blank">
+                  <?php if (!empty($post['attachments']['tweet']['name'])) : ?>
+                    <strong><?php echo $post['attachments']['tweet']['name'] ?></strong><br/>
+                    <span>@<?php echo $post['attachments']['tweet']['screen_name'] ?></span>
+                  <?php else : ?>
+                    <strong>@<?php echo $post['attachments']['tweet']['screen_name'] ?></strong>
+                  <?php endif; ?>
+                </a>
+              </div>
+            </div>
+            <div class="flockler-box__header__icon">
+              <i class="flockler-icon-twitter"></i>
+            </div>
+          </div>
+          <div class="flockler-box__body">
+            <?php if (!empty($post['attachments']['tweet']['media_url'])) : ?>
+              <a href="<?php echo $this->localPermalink($post); ?>">
+                <img src="<?php echo $post['attachments']['tweet']['media_url'] ?>" alt="" />
+              </a>
+            <?php endif; ?>
+            <p>
+              <?php echo $this->linkifyTweet($post['attachments']['tweet']['text']); ?>
+            </p>
+          </div>
+        </div>
+
+      <?php else : ?>
+
+        <h3 class="flockler-blog__article__title">
+          <a href="<?php echo $this->localPermalink($post); ?>">
+            <?php echo $post['title']; ?>
+          </a>
+        </h3>
+        <div class="flockler-blog__article__body">
+          <?php echo $this->snippet($post); ?>
+        </div>
+
+      <?php endif; ?>
+    </div>
+  <?php endforeach; ?>
+
+  <?php if ($this->hasMore()) : ?>
+    <div class="flockler-blog__pagination">
+      <?php foreach ($this->pages() as $page => $dump) : ?>
+        <?php if ($page === 0) : ?>
+          <a href="<?php echo $this->blogBaseUrl(); ?>">1</a>
+        <?php else : ?>
+          <a href="<?php echo $this->blogBaseUrl(); ?>?page=<?php echo $page + 1; ?>"><?php echo $page + 1; ?></a>
+        <?php endif; ?>
+      <?php endforeach; ?>
+    </div>
+  <?php endif; ?>
+</div>

@@ -1,0 +1,39 @@
+<div class="flockler-wall-item flockler-wall-item--linkedin" <?php echo $itemWidth ?>>
+    <div class="flockler-wall-item__content">
+
+        <div class="flockler-wall-item__body">
+            <?php if (!empty($item['attachments']['linkedin']['comment'])) : ?>
+                <?php echo $this->get_parser($item['attachments']['linkedin']['comment'])->parseNewLines()->parseURL()->done() ?>
+            <?php endif; ?>
+        </div>
+
+        <?php if (!empty($item['attachments']['linkedin']['content']['submitted_url'])) : ?>
+          <?php
+            $_link_preview = array(
+              'url' => $item['attachments']['linkedin']['content']['submitted_url'],
+              'cover_url' => $item['attachments']['linkedin']['content']['thumbnail_url'],
+              'title' => $item['attachments']['linkedin']['content']['title'],
+              'description' => $item['attachments']['linkedin']['content']['description']
+            );
+          ?>
+          <?php require(FLOCKLER_WALL_TEMPLATES.'/link_preview.phtml'); ?>
+        <?php endif; ?>
+
+        <div class="flockler-wall-item__footer">
+            <div class="flockler-wall-item__profile">
+                <div class="flockler-wall-item__profile__avatar">
+                    <img src="<?php echo $item['attachments']['linkedin']['company_logo_url'] ?>" alt="" class="flockler-wall-item__profile__avatar-img">
+                </div>
+                <div class="flockler-wall-item__profile__body">
+                    <a href="https://www.linkedin.com/companies/<?php echo $item['attachments']['linkedin']['company']['id'] ?>" class="flockler-wall-item__profile__name" target="_blank"><?php echo $item['attachments']['linkedin']['company']['name'] ?></a>
+                    <span class="flockler-wall-item__profile__detail" target="_blank">LinkedIn</span>
+                </div>
+            </div>
+            <div class="flockler-wall-item__share">
+                <div class="flockler-wall-item__share-actions">
+                    <?php require(FLOCKLER_WALL_TEMPLATES.'/share_actions.phtml'); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

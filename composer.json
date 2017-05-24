@@ -1,0 +1,21 @@
+{
+    "name": "flockler/flockler-magento",
+    "description": "Social Wall by Flockler.",
+    "homepage": "https://developers.flockler.com/plugins/magento",
+    "license": "GPL-3.0",
+    "type": "magento-module",
+    "require-dev": {
+        "colinmollenhour/modman": "^1.12",
+        "magento-ecg/coding-standard": "*",
+        "magento/marketplace-eqp": "^1.0"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/magento/marketplace-eqp.git"
+        }
+    ],
+    "scripts": {
+        "phpcs": "vendor/bin/phpcs --standard=./vendor/magento-ecg/coding-standard/Ecg app/ lib/ skin/"
+    }
+}

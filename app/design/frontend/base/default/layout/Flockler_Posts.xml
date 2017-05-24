@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+
+    <default>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><file>flockler/css/flockler_wall.css</file></action>
+            <action method="addItem"><type>skin_js</type><file>flockler/js/imagesloaded.pkgd.min.js</file></action>
+            <action method="addItem"><type>skin_js</type><file>flockler/js/jquery-oembed.min.js</file></action>
+            <action method="addItem"><type>skin_js</type><file>flockler/js/masonry.pkgd.min.js</file></action>
+            <action method="addItem"><type>skin_js</type><file>flockler/js/flockler-stream.js</file></action>
+        </reference>
+    </default>
+
+    <blog_index_index>
+        <reference name="content">
+            <block type="flockler_posts/index" template="flockler/posts/index.phtml" />
+        </reference>
+    </blog_index_index>
+
+    <blog_index_show>
+        <reference name="content">
+            <block type="flockler_posts/post" template="flockler/posts/show.phtml" />
+        </reference>
+    </blog_index_show>
+
+
+<!--
+Example place for Product Wall:
+
+    <catalog_product_view>
+        <reference name="content">
+            <block type="flockler_flockler/wall" name="flockler.wall" as="wall"/>
+        </reference>
+    </catalog_product_view>
+
+-->
+
+<!--
+Example place for Category Wall:
+
+    <catalog_category_view>
+        <reference name="left_first">
+            <block type="flockler_flockler/wall" name="flockler.wall" as="wall" after="catalog.leftnav">
+                <action method="setWidth"><value>200</value></action>
+                <action method="setCount"><value>1</value></action>
+                <action method="setShowLoadMore"><value>0</value></action>
+            </block>
+        </reference>
+    </catalog_category_view>
+-->
+
+
+</layout>

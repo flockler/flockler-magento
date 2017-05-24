@@ -1,0 +1,34 @@
+<div class="flockler-wall-item flockler-wall-item--twitter" <?php echo $itemWidth ?>>
+    <div class="flockler-wall-item__content">
+        <?php require(FLOCKLER_WALL_TEMPLATES.'/some_item_wrapper_top.phtml'); ?>
+        <?php if($item['attachments']['tweet']['media_url'] && (preg_match('/youtu/', $item['attachments']['tweet']['media_url']) !== 1)) { ?>
+            <div class="flockler-wall-item__media">
+                <a target="_blank" href="https://twitter.com/<?php echo $item['attachments']['tweet']['screen_name'] ?>/status/<?php echo $item['attachments']['tweet']['tweet_id_str'] ?>">
+                    <img src="<?php echo $item['attachments']['tweet']['media_url'] ?>" alt="Twitter photo by <?php $item['attachments']['tweet']['name'] ?>" class="flockler-wall-item__media__img" />
+                </a>
+            </div>
+        <?php } ?>
+        <div class="flockler-wall-item__body">
+            <?php if($item['attachments']['tweet']['text']) { ?>
+                <?php echo $this->get_parser($item['attachments']['tweet']['text'])->parseURL()->parseTUsername()->parseTHashtag()->done() ?>
+            <?php } ?>
+        </div>
+        <div class="flockler-wall-item__footer">
+            <div class="flockler-wall-item__profile">
+                <div class="flockler-wall-item__profile__avatar">
+                    <img src="<?php echo $item['attachments']['tweet']['profile_image_url'] ?>" alt="" class="flockler-wall-item__profile__avatar-img">
+                </div>
+                <div class="flockler-wall-item__profile__body">
+                    <a href="https://twitter.com/<?php echo $item['attachments']['tweet']['screen_name'] ?>" class="flockler-wall-item__profile__name" target="_blank"><?php echo $item['attachments']['tweet']['screen_name'] ?></a>
+                    <a href="https://twitter.com/<?php echo $item['attachments']['tweet']['screen_name'] ?>/status/<?php echo $item['attachments']['tweet']['tweet_id_str'] ?>" class="flockler-wall-item__profile__detail" target="_blank">Twitter</a>
+                </div>
+            </div>
+            <div class="flockler-wall-item__share">
+                <div class="flockler-wall-item__share-actions">
+                    <?php require(FLOCKLER_WALL_TEMPLATES.'/tweet_actions.phtml'); ?>
+                </div>
+            </div>
+        </div>
+        <?php require(FLOCKLER_WALL_TEMPLATES.'/some_item_wrapper_bottom.phtml'); ?>
+    </div>
+</div>

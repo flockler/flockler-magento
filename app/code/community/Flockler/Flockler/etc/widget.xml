@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<widgets>
+    <flockler_flockler_wall type="flockler_flockler/Wall">
+
+        <name>Flockler Wall</name>
+        <description type="desc">Flockler Wall as a widget</description>
+
+        <parameters>
+            <site_id translate="label">
+                <type>text</type>
+                <label>Site ID</label>
+                <required>0</required>
+                <visible>1</visible>
+            </site_id>
+            <section_id translate="label">
+                <type>text</type>
+                <label>Section ID</label>
+                <required>0</required>
+                <visible>1</visible>
+            </section_id>
+            <tags>
+                <type>text</type>
+                <visible>1</visible>
+                <label>Tags</label>
+            </tags>
+            <item_count translate="label">
+                <type>text</type>
+                <label>Items per page</label>
+                <required>1</required>
+                <visible>1</visible>
+                <value>3</value>
+            </item_count>
+            <item_width translate="label">
+                <type>text</type>
+                <label>Item width in pixels</label>
+                <required>1</required>
+                <visible>1</visible>
+                <value>346</value>
+            </item_width>
+            <show_load_more translate="label">
+                <type>select</type>
+                <values>
+                    <yes>
+                        <label>Yes</label>
+                        <value>0</value>
+                    </yes>
+                    <no>
+                        <label>No</label>
+                        <value>false</value>
+                    </no>
+                </values>
+                <label>Show Load More</label>
+                <required>1</required>
+                <visible>1</visible>
+            </show_load_more>
+        </parameters>
+
+    </flockler_flockler_wall>
+
+</widgets>

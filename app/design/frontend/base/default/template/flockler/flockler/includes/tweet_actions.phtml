@@ -1,0 +1,15 @@
+<a href="https://twitter.com/intent/tweet?in_reply_to=<?php echo $item['attachments']['tweet']['tweet_id_str'] ?>" title="Reply"
+   class="flockler-wall-item__share-action flockler-wall-item__share-action--reply" target="_blank">
+  <i class="flockler-icon-reply"></i>
+  <span>Reply</span>
+</a>
+<a href="https://twitter.com/intent/retweet?tweet_id=<?php echo $item['attachments']['tweet']['tweet_id_str'] ?>" title="Retweet"
+   class="flockler-wall-item__share-action flockler-wall-item__share-action--retweet" target="_blank">
+  <i class="flockler-icon-retweet"></i>
+  <span>Retweet</span>
+</a>
+<a href="https://twitter.com/intent/like?tweet_id=<?php echo $item['attachments']['tweet']['tweet_id_str'] ?>" title="Like"
+   class="flockler-wall-item__share-action flockler-wall-item__share-action--favorite" target="_blank">
+  <i class="flockler-icon-heart"></i>
+  <span>Like</span>
+</a>

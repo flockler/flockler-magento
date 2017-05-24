@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+    <modules>
+        <Flockler_Posts>
+            <version>1.0.0</version>
+        </Flockler_Posts>
+    </modules>
+
+    <frontend>
+        <routers>
+            <blog>
+                <use>standard</use>
+                <args>
+                    <module>Flockler_Posts</module>
+                    <frontName>blog</frontName>
+                </args>
+            </blog>
+        </routers>
+
+        <layout>
+            <updates>
+                <blog>
+                    <file>Flockler_Posts.xml</file>
+                </blog>
+            </updates>
+        </layout>
+
+        <translate>
+            <modules>
+                <Flockler_Posts>
+                    <files>
+                        <default>Flockler_Posts.csv</default>
+                    </files>
+                </Flockler_Posts>
+            </modules>
+        </translate>
+    </frontend>
+
+    <global>
+        <blocks>
+            <flockler_posts>
+                <class>Flockler_Posts_Block</class>
+            </flockler_posts>
+        </blocks>
+    </global>
+
+</config>

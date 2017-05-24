@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <menu>
+        <flockler translate="title">
+            <title>Flockler</title>
+            <sort_order>80</sort_order>
+            <children>
+                <posts>
+                    <title>Posts</title>
+                    <sort_order>1</sort_order>
+                    <action>adminhtml/flockler_posts/index</action>
+                </posts>
+                <webhooks>
+                    <title>Webhooks</title>
+                    <sort_order>2</sort_order>
+                    <action>adminhtml/flockler_webhooks/index</action>
+                </webhooks>
+            </children>
+        </flockler>
+    </menu>
+</config>
